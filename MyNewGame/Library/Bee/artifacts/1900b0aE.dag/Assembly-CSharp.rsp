@@ -370,6 +370,7 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.XR.LegacyInputHelpers.ref.dll"
 "Assets/scripts/CameraC.cs"
 "Assets/scripts/PlayerC.cs"
+"Assets/scripts/Stage.cs"
 "Assets/scripts/Title.cs"
 -langversion:9.0
 

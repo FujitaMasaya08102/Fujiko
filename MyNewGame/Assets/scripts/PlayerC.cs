@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PlayerC : MonoBehaviour
 {
-    float PlayerSpeed = 1.0f;
-
-
     CharacterController controller;
     Vector3 movedir = Vector3.zero;
 
+    int Lane;
+
+    public float speedX;
+    public float speedZ;
+    public float acceleratorZ;
 
     // Start is called before the first frame update
     void Start()
@@ -20,21 +22,34 @@ public class PlayerC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (controller.isGrounded)
+        if (Input.GetKeyDown("left"))
         {
-
-            
-
-            movedir.z = Input.GetAxis("Vertical") * PlayerSpeed;
-
-
-            transform.Rotate(0, Input.GetAxis("Horizontal") * 0.5f, 0);
-
-            if (Input.GetButton("Jump"))
+            if (controller.isGrounded && Lane > -1f)
+            {
+                Lane--;
+            }
+        }
+        if (Input.GetKeyDown("right"))
+        {
+            if (controller.isGrounded && Lane < 1f)
+            {
+                Lane++;
+            }
+        }
+        if (Input.GetKeyDown("space"))
+        {
+            if (controller.isGrounded)
             {
                 movedir.y = 10f;
             }
         }
+
+        movedir.z = Mathf.Clamp(movedir.z + (acceleratorZ * Time.deltaTime), 0, speedZ);
+
+        float ratioX = (Lane * 1.0f - transform.position.x) / 1.0f;
+        movedir.x = ratioX * speedX;
+
+
 
         movedir.y -= 20f * Time.deltaTime;
 
