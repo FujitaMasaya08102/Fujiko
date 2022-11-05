@@ -12,43 +12,80 @@ public class PlayerC : MonoBehaviour
     public float speedX;
     public float speedZ;
     public float acceleratorZ;
+    Animator animator;
+    const int MaxLife = 1;
+    const float Duration = 0.5f;
+    int life = MaxLife;
+    float RecoveryTime = 0.0f;
 
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
     }
+    bool IsStun()
+    {
+        return RecoveryTime > 0.0f || life <= 0;
 
+    }
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown("left"))
         {
-            if (controller.isGrounded && Lane > -1f)
+            if (IsStun())
+            {
+                return;
+            }
+
+            if (controller.isGrounded && Lane > -2f)
             {
                 Lane--;
             }
         }
         if (Input.GetKeyDown("right"))
         {
-            if (controller.isGrounded && Lane < 1f)
+            if (IsStun())
+            {
+                return;
+            }
+            if (controller.isGrounded && Lane < 2f)
             {
                 Lane++;
             }
         }
         if (Input.GetKeyDown("space"))
         {
+            if (IsStun())
+            {
+                return;
+            }
+
             if (controller.isGrounded)
             {
                 movedir.y = 10f;
+                animator.SetTrigger("Jump");
             }
         }
 
-        movedir.z = Mathf.Clamp(movedir.z + (acceleratorZ * Time.deltaTime), 0, speedZ);
+        if (IsStun())
+        {
+            movedir.x = 0.0f;
+            movedir.z = 0.0f;
+            RecoveryTime -= Time.deltaTime;
+            if (life == 0)
+            {
+                animator.SetTrigger("Stand");
+            }
+        }
+        else
+        {
+            movedir.z = Mathf.Clamp(movedir.z + (acceleratorZ * Time.deltaTime), 0, speedZ);
 
-        float ratioX = (Lane * 1.0f - transform.position.x) / 1.0f;
-        movedir.x = ratioX * speedX;
-
+            float ratioX = (Lane * 1.0f - transform.position.x) / 1.0f;
+            movedir.x = ratioX * speedX;
+        }
 
 
         movedir.y -= 20f * Time.deltaTime;
@@ -59,6 +96,23 @@ public class PlayerC : MonoBehaviour
         if (controller.isGrounded)
         {
             movedir.y = 0;
+        }
+
+        animator.SetBool("Run", movedir.z > 0.0f);
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (IsStun())
+        {
+            return;
+        }
+        if (hit.gameObject.tag == "Enemy")
+        {
+            life--;
+            RecoveryTime = Duration;
+            animator.SetTrigger("Damage");
+            Destroy(hit.gameObject);
         }
     }
 }
