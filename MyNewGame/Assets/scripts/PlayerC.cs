@@ -13,7 +13,7 @@ public class PlayerC : MonoBehaviour
     public float speedZ;
     public float acceleratorZ;
     Animator animator;
-    const int MaxLife = 1;
+    const int MaxLife = 2;
     const float Duration = 0.5f;
     int life = MaxLife;
     float RecoveryTime = 0.0f;
