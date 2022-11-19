@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerC : MonoBehaviour
 {
+
     CharacterController controller;
     Vector3 movedir = Vector3.zero;
 
@@ -13,7 +14,7 @@ public class PlayerC : MonoBehaviour
     public float speedZ;
     public float acceleratorZ;
     Animator animator;
-    const int MaxLife = 2;
+    const int MaxLife = 3;
     const float Duration = 0.5f;
     int life = MaxLife;
     float RecoveryTime = 0.0f;
@@ -21,11 +22,20 @@ public class PlayerC : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
+
+    }
+    public int Life()
+    {
+
+        return life;
+
     }
     bool IsStun()
     {
+
         return RecoveryTime > 0.0f || life <= 0;
 
     }
