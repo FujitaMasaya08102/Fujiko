@@ -55,7 +55,7 @@ public class StageGenerator : MonoBehaviour
 
         }
 
-        for (int i = StageIndex + 1; i <= maps; i++)//指定したステージまで作成する
+        for (int i = StageIndex +1; i <= maps; i++)//指定したステージまで作成する
         {
 
             GameObject stage = MakeStage(i);
