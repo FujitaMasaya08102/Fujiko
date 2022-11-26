@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerC : MonoBehaviour
 {
 
@@ -87,7 +87,9 @@ public class PlayerC : MonoBehaviour
             if (life == 0)
             {
                 animator.SetTrigger("Stand");
+                
             }
+        
         }
         else
         {
@@ -124,5 +126,9 @@ public class PlayerC : MonoBehaviour
             animator.SetTrigger("Damage");
             Destroy(hit.gameObject);
         }
+        
     }
+
+
+
 }
