@@ -17,6 +17,7 @@ public class SimpleCollectibleScript : MonoBehaviour {
 
 	public GameObject collectEffect;
 
+
 	// Use this for initialization
 	void Start () {
 		
@@ -82,7 +83,15 @@ public class SimpleCollectibleScript : MonoBehaviour {
 
 			Debug.Log ("Do NoType Command");
 		}
-
 		Destroy (gameObject);
+		
+	
+		
+	}
+
+
+	void Delete()
+    {
+		Destroy(collectEffect);
 	}
 }
