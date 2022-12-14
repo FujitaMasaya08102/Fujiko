@@ -5,16 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    // Start is called before the first frame update
+    private void OnControllerColliderHit(ControllerColliderHit collision)
     {
-        
+  
+        if (collision.gameObject.tag == "GameOver")
+        {
+            Debug.Log("a");
+            SceneManager.LoadScene("GameOver");
+          
+        }
     }
 }

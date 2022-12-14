@@ -100,7 +100,7 @@ public class PlayerC : MonoBehaviour
         }
 
 
-        movedir.y -= 20f * Time.deltaTime;
+       movedir.y -= 20f * Time.deltaTime;
 
         Vector3 globaldir = transform.TransformDirection(movedir);
         controller.Move(globaldir * Time.deltaTime);

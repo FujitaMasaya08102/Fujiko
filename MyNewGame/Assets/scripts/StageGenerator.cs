@@ -84,6 +84,18 @@ public class StageGenerator : MonoBehaviour
 
         GameObject stageObject = (GameObject)Instantiate(stagePrefabList[nextStage], new Vector3(0, 0, index * StageSize), Quaternion.identity);
 
+        float x = stageObject.transform.localScale.x;
+        float y = stageObject.transform.localScale.y;
+        float z = stageObject.transform.localScale.z;
+
+        x = (int)Mathf.Floor(x / 2);
+        z = (int)Mathf.Floor(z / 2);
+
+        Vector3 Npos;
+        Npos.x = Random.Range(-x, x);
+        Npos.y = Random.Range(1, 2);
+        Npos.z = Random.Range(-z, z);
+        //x y zはステージの座標を0としたノーツの座標　
         return stageObject;
 
     }
