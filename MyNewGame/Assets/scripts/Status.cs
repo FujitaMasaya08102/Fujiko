@@ -9,7 +9,7 @@ public class Status : MonoBehaviour
 
     public PlayerC unitychan;
     public Text scoreText;
-
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +19,10 @@ public class Status : MonoBehaviour
     void Update()
     {
         int score = TotalScore();
+
+
         scoreText.text = "ëñçsãóó£ÅF" + score + "Çç";
+ 
 
         Lifecheck(unitychan.Life());
     }
@@ -28,6 +31,8 @@ public class Status : MonoBehaviour
     {
         return (int)unitychan.transform.position.z;
     }
+
+
 
     public void Lifecheck(int life)
     {

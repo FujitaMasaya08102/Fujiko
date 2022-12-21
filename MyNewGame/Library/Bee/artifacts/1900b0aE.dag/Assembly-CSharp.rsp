@@ -374,11 +374,13 @@
 "Assets/scripts/EffectController.cs"
 "Assets/scripts/Enemy.cs"
 "Assets/scripts/GameOver.cs"
+"Assets/scripts/Notes.cs"
 "Assets/scripts/PlayerC.cs"
 "Assets/scripts/Reset.cs"
 "Assets/scripts/StageGenerator.cs"
 "Assets/scripts/Status.cs"
 "Assets/scripts/Title.cs"
+"Assets/scripts/UIContoroller.cs"
 "Assets/SimpleCollectiblesPack/SimpleCollectibleScript.cs"
 -langversion:9.0
 
